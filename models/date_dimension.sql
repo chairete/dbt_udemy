@@ -6,7 +6,7 @@ WITH CTE AS (
         DAYNAME(TO_TIMESTAMP(STARTED_AT)) AS DAYOFWEEK_STARTED_AT,
         {{ day_type('STARTED_AT') }} AS DAY_TYPE,
         {{ get_season('STARTED_AT') }} as SEASON
-    FROM {{ source ('demo', 'bike')}}
+    FROM {{ ref('stg_bike') }}
     where Started_AT != 'started_at'
 )
 SELECT * 
